@@ -13,7 +13,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.wltea.analyzer.lucene.IKQueryParser;
 
-public class WikiConceptSearch {
+public class ConceptSearch {
 	
 	public void searchQuerys(String input) throws IOException{
 		Directory directory=FSDirectory.open(new File("wikipedia//ConceptIndex"));

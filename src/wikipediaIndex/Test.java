@@ -6,7 +6,7 @@ public class Test {
 
 	public static void main(String[] args) throws IOException {
 		ConceptIndex a=new ConceptIndex();
-		WikiConceptSearch b=new WikiConceptSearch();
+		ConceptSearch b=new ConceptSearch();
 		b.searchQuerys("信息");
 	}
 
