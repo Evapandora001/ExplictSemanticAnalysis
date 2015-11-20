@@ -7,7 +7,7 @@ public class Test {
 	public static void main(String[] args) throws IOException {
 		ConceptIndex a=new ConceptIndex();
 		ConceptSearch b=new ConceptSearch();
-		b.searchQuerys("信息");
+		b.searchQuerys("姓名");
 	}
 
 }
