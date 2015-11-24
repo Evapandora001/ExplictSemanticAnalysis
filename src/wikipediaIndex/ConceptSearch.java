@@ -19,9 +19,8 @@ public class ConceptSearch {
 	public LinkedList<WikiConcept> searchQuerys(String input){
 		LinkedList<WikiConcept> res=new LinkedList<WikiConcept>();
 		IndexSearcher indexSearcher=null;
-		Directory directory;
 		try {
-				directory = FSDirectory.open(new File("wikipedia//ConceptIndex"));
+			Directory directory = FSDirectory.open(new File("wikipedia//ConceptIndex"));
 	            //创建索引 前缀搜索器,且只读
 	            IndexReader indexReader = IndexReader.open(directory,true);
 	            indexSearcher = new IndexSearcher(indexReader);
@@ -30,7 +29,7 @@ public class ConceptSearch {
 	            
 	            //返回前number条记录
 //	            TopDocs topDocs = indexSearcher.search(query, 100,new Sort(new SortField("score", SortField.INT,true)));
-	            TopDocs topDocs = indexSearcher.search(query, Integer.MAX_VALUE);
+	            TopDocs topDocs = indexSearcher.search(query,1000);// Integer.MAX_VALUE
 	            //信息展示
 	            int totalCount = topDocs.totalHits;
 	            System.out.println("共检索出 "+totalCount+" 条记录");
@@ -45,7 +44,7 @@ public class ConceptSearch {
 	                String content= document.get("content");
 	                res.add(new WikiConcept(concept, content));
 //	                System.out.println(concept+"\r\n"+content+"\r\n");
-	                 new ConceptExtract().writeAppend(concept+"\r\n"+content+"\r\n","wikipedia\\out\\"+input);
+//	                 new ConceptExtract().writeAppend(concept+"\r\n"+content+"\r\n","wikipedia\\out\\"+input);
 	           }
 	        } catch (IOException er) {
 				er.printStackTrace();
