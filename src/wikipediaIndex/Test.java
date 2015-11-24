@@ -5,9 +5,9 @@ import java.io.IOException;
 public class Test {
 
 	public static void main(String[] args) throws IOException {
-		ConceptIndex a=new ConceptIndex();
+//		ConceptIndex a=new ConceptIndex();
 		ConceptSearch b=new ConceptSearch();
-		b.searchQuerys("姓名");
+		b.searchQuerys("青岛");
 	}
 
 }

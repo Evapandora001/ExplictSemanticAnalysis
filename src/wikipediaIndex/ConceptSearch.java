@@ -2,6 +2,7 @@ package wikipediaIndex;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
@@ -15,10 +16,12 @@ import org.wltea.analyzer.lucene.IKQueryParser;
 
 public class ConceptSearch {
 	
-	public void searchQuerys(String input) throws IOException{
-		Directory directory=FSDirectory.open(new File("wikipedia//ConceptIndex"));
+	public LinkedList<WikiConcept> searchQuerys(String input){
+		LinkedList<WikiConcept> res=new LinkedList<WikiConcept>();
 		IndexSearcher indexSearcher=null;
-		  try {
+		Directory directory;
+		try {
+				directory = FSDirectory.open(new File("wikipedia//ConceptIndex"));
 	            //创建索引 前缀搜索器,且只读
 	            IndexReader indexReader = IndexReader.open(directory,true);
 	            indexSearcher = new IndexSearcher(indexReader);
@@ -40,9 +43,14 @@ public class ConceptSearch {
 	                Document  document = indexSearcher.doc(scDoc.doc);
 	                String concept= document.get("concept");
 	                String content= document.get("content");
-	                System.out.println(concept+"\r\n"+content+"\r\n");
+	                res.add(new WikiConcept(concept, content));
+//	                System.out.println(concept+"\r\n"+content+"\r\n");
+	                 new ConceptExtract().writeAppend(concept+"\r\n"+content+"\r\n","wikipedia\\out\\"+input);
 	           }
-	        } catch (Exception e) {
+	        } catch (IOException er) {
+				er.printStackTrace();
+				System.err.println("索引文件打开失败");
+			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
 	            try {
@@ -51,6 +59,7 @@ public class ConceptSearch {
 	                e.printStackTrace();
 	            }
 	        }
+		  return res;
 	}
 
 }

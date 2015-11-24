@@ -1,5 +1,7 @@
 package wikipediaIndex;
 
+import org.apache.lucene.util.ToStringUtils;
+
 public class WikiConcept {
 	String concept;
 	String content;
@@ -22,6 +24,12 @@ public class WikiConcept {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	
+	
+	public String toString(){
+		return(getConcept()+"\r\n"+getContent());
 	}
 	
 }

@@ -54,8 +54,9 @@ public class ConceptIndex {
    		     BufferedReader br = new BufferedReader(isr);
    		     String line = null;
    		     while ((line = br.readLine()) != null) {
-   		    	 String temp[]=line.split("#",2);
-   	            Document document = addDocument(new WikiConcept(temp[0],temp[1]));
+   		    	 String concept=line.trim();
+   		    	 String content=br.readLine().trim();
+   	            Document document = addDocument(new WikiConcept(concept,content));
    	            indexWriter.addDocument(document);
    	            numIndexed++;
    		        }		        
