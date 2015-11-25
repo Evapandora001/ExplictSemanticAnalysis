@@ -29,7 +29,7 @@ public class ConceptSearch {
 	            
 	            //返回前number条记录
 //	            TopDocs topDocs = indexSearcher.search(query, 100,new Sort(new SortField("score", SortField.INT,true)));
-	            TopDocs topDocs = indexSearcher.search(query,1000);// Integer.MAX_VALUE
+	            TopDocs topDocs = indexSearcher.search(query,10000);// Integer.MAX_VALUE
 	            //信息展示
 	            int totalCount = topDocs.totalHits;
 	            System.out.println("共检索出 "+totalCount+" 条记录");
